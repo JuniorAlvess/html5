@@ -15,6 +15,6 @@
    * Texto
    * Video
    * Projeto form
-     * Criação do formulario
+     * Criação do formulário
      * Servidor (criado com JavaScript)
 <!--te-->
