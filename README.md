@@ -1,6 +1,6 @@
 # HTML5
 
-## Repositorio focado em estudos baseados em css. 
+## Repositório focado em estudos baseados em css. 
 
 ### O que foi abordado
 
