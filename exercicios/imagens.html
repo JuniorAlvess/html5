@@ -1,0 +1,119 @@
+<div wm-slider>
+
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem1.jpg"
+        alt="Muro da Cidade" 
+        width="513" height="342"
+        title="Muro da Cidade por Tarse Bessa">
+    </p>
+    
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem2.gif"
+        alt="Muro da Cidade"  height="342">
+    </p>
+    
+    <p class="circular">
+        <img src="http://files.cod3r.com.br/curso-web/imagem3.png"
+        alt="Rio de Janeiro"  height="342">
+    </p>
+    
+    <p class="texto">
+        <img src="http://files.cod3r.com.br/curso-web/avatar.jpg"
+        alt="Avatar"  height="50" align="left">
+        Texto Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+        Fugit rerum odit temporibus nemo explicabo deleniti, corrupti 
+        earum laudantium deserunt, error a eveniet quia voluptatem adipisci 
+        soluta, sit odio. Laboriosam, fugit.
+    </p>
+    
+    <p class="cidade"></p>
+    
+    <p>
+        <!-- O picture permite colocar varias fontes/imagens diferentes e
+            é possível aplicar critérios para que as imagens exibam ou não.
+        -->
+        <picture>
+            <!-- a página precisa ter uma largura miníma de 600px para essa imagem ser exibida -->
+            <source media="(min-width: 600px)" srcset="http://files.cod3r.com.br/curso-web/logo-larga.png">
+                <!-- caso se largura a página for menor que 600px essa imagem será exibida  -->
+                <img src="http://files.cod3r.com.br/curso-web/logo-estreita.png" alt="Logo">
+            </picture>
+    </p>
+</div>
+        
+<style>
+    p {
+        position: absolute;
+        display: none;
+    }    
+
+    .circular {
+        width: 513px;
+        background-color: #444;
+    }
+
+    .texto {
+        width: 400px;
+    }
+
+    .texto img {
+        margin-right: 10px;
+    }
+
+    .cidade {
+        width: 513px;
+        height: 342px;
+        background-image: url('http://files.cod3r.com.br/curso-web/imagem4.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 200%;
+    }
+</style>
+
+<script>
+    function mover(elem, inicio, fim, passo, callback) {
+        const novoInicio = inicio - passo // calculando o novoInicio apartir do início - o passo
+        if (novoInicio >= fim) {/* Verificando se o início é maior do que o fim*/
+            elem.style.right = novoInicio + 'px' // setando o right para um novo início
+            setTimeout(() => mover(elem, novoInicio, fim, passo, callback), 15)// passando um novo início para a mesma função mover
+        } else {
+            // quando o início for exatamente igual ou menor que o fim, será chamada a função callback "quando o movimento estiver acabado"
+            callback()
+        }
+    }
+
+    // const p = document.querySelector('[wm-slider] > p') // pegando a primeira tag p com o wm-slider
+    // p.style.display = 'block' // tornando a tag visível
+
+    // mover(p, 1500, -520, 5, () => { // movendo a tag p de 1500px ate -520px, o passo sera de 5px e no final sera chamada a função
+    //     console.log('Terminou!!!')
+    // })
+
+    function slider() {
+        const elementos = document.querySelectorAll('[wm-slider] > p')
+        const slides = Array.from(elementos) // transformando os elementos em um array de slides
+        exibirSlide(slides, slides[0])
+    }
+
+    function exibirSlide(slides, slide) { // recebe a lista de slides e o slide que sera exibido
+        slide.style.display = 'block'
+
+        const inicio = innerWidth // com essa propriedade é possivel pegar a largura da pagina
+        const fim = -slide.clientWidth // largura do cliente
+        
+        slide.style.right = `${inicio}px`
+
+        mover(slide, inicio, fim, 3, () => {
+            // passando o próximo slide
+            slide.style.display = 'none' // no final do movimento o slide ficará invisível
+            exibirSlide(slides, getProximo(slides, slide))
+        })
+    }
+
+    function getProximo(lista, atual) {
+        const i = lista.indexOf(atual) + 1 // essa função recebe o indice atual e depois adiciona mais um
+        return i < lista.length ? lista[i] : lista[0]
+    } 
+
+    slider()
+</script>
