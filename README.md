@@ -11,7 +11,7 @@
    * Links
    * Lista Aninhada
    * Tabela
-   * Tags não visuais
+   * Tags não Visuais
    * Texto
    * Video
    * Projeto form
