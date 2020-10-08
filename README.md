@@ -5,7 +5,7 @@
 ### O que foi abordado
 
 <!--ts-->
-   * [Anatomia]
+   * [Anatomia] (#Anatomia)
    * [Texto Puro] 
    * [Imagens]
    * [links]
@@ -15,6 +15,6 @@
    * [Texto]
    * [Video]
    * [Projeto form]
-    * [Criação do formulario]
-    * [Servidor (criado com JavaScript)]
+     * [Criação do formulario]
+     * [Servidor (criado com JavaScript)]
 <!--te-->
